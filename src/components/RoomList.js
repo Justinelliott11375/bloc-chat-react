@@ -14,7 +14,7 @@ class RoomList extends Component {
     const newRoomName = this.state.newRoomName;
     console.log(newRoomName);
     this.roomsRef.push({
-      name: newRoomName /* createDate: Date.now() , from exercise with mentor, leaving in code for reference */
+      name: newRoomName/* createDate: Date.now() , from exercise with mentor, leaving in code for reference */
     });
     this.setState({ newRoomName: ""})
   }
@@ -22,6 +22,13 @@ class RoomList extends Component {
   handleChange(e) {
     this.setState({ newRoomName: e.target.value });
   }
+
+  roomChange (room) {
+    console.log("changing room:", room);
+    this.props.setActiveRoom(room);
+
+  }
+
   componentDidMount() {
     this.roomsRef.on('child_added', snapshot => {
       const room = snapshot.val();
@@ -29,12 +36,14 @@ class RoomList extends Component {
       this.setState({ rooms: this.state.rooms.concat( room )});
     });
   }
+
+
   render() {
     return (
       <section className="roomList">
         {
           this.state.rooms.map((room, index) =>
-        <div key={index}>{room.name}</div>
+        <div onClick= {() => this.roomChange(room)} key={index} >{room.name}</div>
           )
         }
         <form onSubmit={ (e) => this.createRoom(e)}>
