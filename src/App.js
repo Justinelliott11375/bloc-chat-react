@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/User';
 import * as firebase from 'firebase';
 
 
@@ -21,14 +22,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeRoom: {}
+      activeRoom: {}, activeUser:"Guest"
     };
     this.setActiveRoom = this.setActiveRoom.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
 
-  setActiveRoom(room){
+  setActiveRoom(room) {
     this.setState({activeRoom: room}, () => console.log("Active room state:", this.state.activeRoom));
     console.log("Room changed:", room);
+  }
+
+  setUser(user) {
+    this.setState({activeUser: user});
   }
 
   render() {
@@ -38,6 +44,7 @@ class App extends Component {
         <main>
           <RoomList firebase={ firebase } setActiveRoom={ (room) => this.setActiveRoom(room) } />
           <MessageList firebase={firebase} activeRoom={this.state.activeRoom}/>
+          <User firebase={firebase} setUser={this.setUser} activeUser={this.state.activeUser}/>
         </main>
       </div>
     );

@@ -15,7 +15,6 @@ class MessageList extends Component {
     this.messageRef.on('child_added', snapshot => {
       const message = snapshot.val();
       this.setState({ messages: this.state.messages.concat( message )});
-        console.log("mount fired");
     });
     console.log(this.props.activeRoom);
   }
@@ -51,10 +50,8 @@ class MessageList extends Component {
   render() {
     const messageList = (this.state.messages.map((message) => {
       if (message.roomId === this.props.activeRoom.key) {
-        console.log("mlist fired")
         return <div key={message.roomId}>{message.content}</div>
       }
-      console.log('mlist not fired');
       return null;
       })
     );
