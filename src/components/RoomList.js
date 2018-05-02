@@ -12,7 +12,6 @@ class RoomList extends Component {
   createRoom(e) {
     e.preventDefault();
     const newRoomName = this.state.newRoomName;
-    console.log(newRoomName);
     this.roomsRef.push({
       name: newRoomName/* createDate: Date.now() , from exercise with mentor, leaving in code for reference */
     });
@@ -24,7 +23,6 @@ class RoomList extends Component {
   }
 
   roomChange (room) {
-    console.log("changing room:", room);
     this.props.setActiveRoom(room);
 
   }
