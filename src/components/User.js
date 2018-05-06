@@ -26,9 +26,10 @@ class User extends Component {
 
     return (
       <section className="userName">
-        <button type="text" onClick={() => this.handleSignIn()}>sign in</button>
+        <div>hello, {userDisplayName}!</div>
+        { this.props.activeUser === (undefined || null) ? <button type="text" onClick={() => this.handleSignIn()}>sign in</button> :
         <button type="text" onClick={() => this.handleSignOut()}>sign out</button>
-        <div>hello, {userDisplayName}</div>
+        }
       </section>
     );
   }

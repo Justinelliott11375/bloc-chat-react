@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './../App.css'
 
 class RoomList extends Component {
   constructor(props) {
@@ -16,6 +17,19 @@ class RoomList extends Component {
       name: newRoomName/* createDate: Date.now() , from exercise with mentor, leaving in code for reference */
     });
     this.setState({ newRoomName: ""})
+  }
+
+  deleteRoom(deleteKey, deleteName) {
+    const deletingRoom = this.roomsRef.child(deleteKey);
+    deletingRoom.remove(function(error) {
+      alert(error ? "failed" : deleteName
+      + " successfully deleted!")
+    });
+    this.props.setActiveRoom("")
+    console.log("delete fired")
+    const otherRooms= this.state.rooms.filter(room => room.key !== deleteKey);
+      this.setState({ rooms: otherRooms});
+
   }
 
   handleChange(e) {
@@ -39,15 +53,18 @@ class RoomList extends Component {
   render() {
     return (
       <section className="roomList">
+        <div>Active Room: {this.props.activeRoom.name === (null || undefined) ? "No room currently selected" : this.props.activeRoom.name}</div>
         {
           this.state.rooms.map((room, index) =>
-        <div onClick= {() => this.roomChange(room)} key={index} >{room.name}</div>
+        <div onClick= {() => this.roomChange(room)} key={index} >{room.name}
+        </div>
           )
         }
+        <button onClick= {() => this.deleteRoom(this.props.activeRoom.key, this.props.activeRoom.name)}>Delete active room</button>
         <form onSubmit={ (e) => this.createRoom(e)}>
-          Create new room:
+          <p>Create new room:</p>
           <input type="text" value ={this.state.newRoomName} onChange={ (e) => this.handleChange(e) } />
-          <input type="submit" value="submit"></input>
+          <input type="submit" value="Create"></input>
         </form>
       </section>
     );

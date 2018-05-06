@@ -9,6 +9,7 @@ class MessageList extends Component {
     this.messageRef = this.props.firebase.database().ref('messages');
     this.createMessage = this.createMessage.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.timeStampConverter = this.timeStampConverter.bind(this);
   };
 
   componentDidMount() {
@@ -19,6 +20,9 @@ class MessageList extends Component {
     });
   }
 
+  timeStampConverter(timeStamp) {
+    return new Date(timeStamp);
+  }
   createMessage(e) {
     console.log('createMessage fired');
     e.preventDefault();
@@ -64,11 +68,9 @@ class MessageList extends Component {
 
     return (
       <section className="activeMessageList">
-        <div>Current Room: {this.props.activeRoom.name}</div>
-        <div>Messages:</div>
-        <div>{messageList}</div>
-        <form onSubmit={this.createMessage}>
-          <input type="text" value={this.state.content} onChange={this.handleChange}></input>
+        <div className="messageListText">{messageList}</div>
+        <form className="messageListText" id="messageBar" onSubmit={this.createMessage}>
+          <input id="messageField" type="text" value={this.state.content} onChange={this.handleChange}></input>
           <input type="submit" value="Send"></input>
         </form>
       </section>

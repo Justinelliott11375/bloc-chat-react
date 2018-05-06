@@ -1,12 +1,13 @@
 .App {
+
   text-align: center;
+  font-size: 1.25em;
+  color: white;
 }
 
 .App-header {
-  background-color: #222;
   height: 150px;
   padding: 20px;
-  color: white;
 }
 
 .App-title {
@@ -17,6 +18,57 @@
   font-size: large;
 }
 
+body {
+  background-color: #f76c6c;
+  overflow: visible;
+}
+.roomList {
+  border-radius: 10px;
+  background-clip: padding-box;
+  padding-top: 10px;
+  float: left;
+  width: 25%;
+  height: 100vh;
+  background-color: #374785;
+  overflow: hidden;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.userName{
+  background-color: #f76c6c;
+  border-radius: 10px;
+}
+.activeMessageList {
+  border-radius: 10px;
+  float: right;
+  padding-top: 10px;
+  margin: 5px;
+  width: 70%;
+  height: 100vh;
+  background-color: #a8d0e6;
+  text-align: left;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  position: relative;
+}
+
+.messageListText{
+  padding-left: 1em;
+  overflow-y: auto;
+  position: absolute;
+}
+#messageBar {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 1em;
+}
+
+#messageField {
+
+}
+
+input[type="text"], input[type="submit"] {
+  font-size: 1em;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
