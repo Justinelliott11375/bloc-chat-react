@@ -69,7 +69,7 @@ class MessageList extends Component {
     return (
       <section className="activeMessageList">
         <div className="messageListText">{messageList}</div>
-        <form className="messageListText" id="messageBar" onSubmit={this.createMessage}>
+        <form id="messageBar" onSubmit={this.createMessage}>
           <input id="messageField" type="text" value={this.state.content} onChange={this.handleChange}></input>
           <input type="submit" value="Send"></input>
         </form>

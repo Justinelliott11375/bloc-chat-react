@@ -26,12 +26,21 @@ body {
   border-radius: 10px;
   background-clip: padding-box;
   padding-top: 10px;
+  margin: 5px;
   float: left;
   width: 25%;
-  height: 100vh;
+  height: 90vh;
   background-color: #374785;
-  overflow: hidden;
+  overflow: scroll;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.activeRoom {
+  padding-bottom: 3em;
+}
+
+#roomsClickable {
+  cursor: pointer;
 }
 
 .userName{
@@ -41,29 +50,26 @@ body {
 .activeMessageList {
   border-radius: 10px;
   float: right;
-  padding-top: 10px;
   margin: 5px;
-  width: 70%;
-  height: 100vh;
+  width: 72%;
+  height: 91vh;
+  overflow: auto;
   background-color: #a8d0e6;
   text-align: left;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
   position: relative;
+  display:flex;
+  flex-direction:column-reverse;
 }
 
 .messageListText{
-  padding-left: 1em;
-  overflow-y: auto;
-  position: absolute;
+  padding: .5em;
+  word-wrap: break-word;
+  margin-bottom: 2.5em;
 }
 #messageBar {
   position: absolute;
-  bottom: 0;
-  padding-bottom: 1em;
-}
-
-#messageField {
-
+  padding: 1em;
 }
 
 input[type="text"], input[type="submit"] {

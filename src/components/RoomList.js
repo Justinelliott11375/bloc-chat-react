@@ -53,10 +53,11 @@ class RoomList extends Component {
   render() {
     return (
       <section className="roomList">
-        <div>Active Room: {this.props.activeRoom.name === (null || undefined) ? "No room currently selected" : this.props.activeRoom.name}</div>
+        <div className="activeRoom">Active Room: {this.props.activeRoom.name === (null || undefined) ? "No room currently selected" : this.props.activeRoom.name}</div>
+        <div>Available rooms:</div>
         {
           this.state.rooms.map((room, index) =>
-        <div onClick= {() => this.roomChange(room)} key={index} >{room.name}
+        <div id="roomsClickable" onClick= {() => this.roomChange(room)} key={index}>{room.name}
         </div>
           )
         }
