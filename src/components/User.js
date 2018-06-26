@@ -20,6 +20,11 @@ class User extends Component {
     console.log("signed out")
   }
 
+  signInAnonymous(e){
+    this.props.firebase.auth().signInAnonymously()
+    this.props.setUser("Guest");
+
+  }
   render() {
 
     const userDisplayName = this.props.activeUser === (undefined || null) ? "Guest" : this.props.activeUser.displayName;
@@ -27,7 +32,10 @@ class User extends Component {
     return (
       <section className="userName">
         <div>hello, {userDisplayName}!</div>
-        { this.props.activeUser === (undefined || null) ? <button type="text" onClick={() => this.handleSignIn()}>sign in</button> :
+        { this.props.activeUser === (undefined || null) ? <button type="text" onClick={() => this.handleSignIn()}>sign in with Google</button> :
+        <button type="text" onClick={() => this.handleSignOut()}>sign out</button>
+        }
+        {this.props.activeUser === (undefined || null) ? <button type="text" onClick={() => this.signInAnonymous()}>continue as Guest</button> :
         <button type="text" onClick={() => this.handleSignOut()}>sign out</button>
         }
       </section>
